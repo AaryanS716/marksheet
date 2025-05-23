@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>             
+        body {
+            background-color: #0f172a;
+            font-family: Arial, sans-serif;
+            cursor: pointer;
+        }
+        h1 {
+            color: #333;
+        }
+        h3 {
+            color: #555;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #cbd5e1;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 15%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #16a34a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            position: center;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+</head>
+<body>
+    <section id="college">
+        <h1><center>S D Jain International College</center></h1>
+        <p><h3><center>Plot No 166, Near Indian Diamond Institute,<br>
+            Opposite Idi, Behind Someshwar Enclave,<br>
+             Vesu, Surat, Gujarat 395007</center></h3></p>
+        </section>  
+        <section id="student">
+            <h1><center>Student Details</center></h1>
+            <form action="output.php" method="post"><center>
+                <label for="fname">Enter First Name:</label><br>
+                <input type="text" id="fname" name="fname" pattern="[A-Za-z\s]+" title="First Name should contain only letters and spaces"><br><br>
+                <label for="lname">Enter Last Name:</label><br>
+                <input type="text" id="lname" name="lname" pattern="[A-Za-z\s]+" title="Last Name should contain only letters and spaces" required><br><br>
+                <label for="roll_no">Roll No:</label><br>
+                <input type="text" id="roll_no" name="roll_no" pattern="\d+" title="Roll number should contain only numbers" required><br><br>
+                <label for="year">Year:</label><br>
+                <select id="year" name="year" required>
+                    <option value="o">Select Your Year</option>
+                    <option value="1st">First</option>
+                    <option value="2nd">Second</option>
+                    <option value="3rd">Third</option>
+                    <option value="4th">Fourth</option>
+                </select><br><br>
+                <label for="semester">Semester:</label><br>
+                <select id="semester" name="semester" required>
+                    <option value="o">Select Your Semester</option>
+                    <option value="1st">First</option>
+                    <option value="2nd">Second</option>
+                    <option value="3rd">Third</option>
+                    <option value="4th">Fourth</option>
+                    <option value="5th">Fifth</option>
+                    <option value="6th">Sixth</option>
+                    <option value="7th">Seventh</option>
+                    <option value="8th">Eighth</option>
+                </select><br><br></center>
+        </section>
+        <section id="marks">
+            <h1><center>Marks</center></h1>
+            <table border="0" style="width: 100%; text-align: center;" id="marksTable">
+                <tr>
+                <th>Subject</th>
+                <th>Obtained Marks</th>
+                <th>Out of Total</th>
+                </tr>
+                <tr>
+                <td><label for="sub1">Operating System</label></td>
+                <td><input type="text" id="os" name="os" min="0" max="100" title="marks should be positive and between 0 to 100"></td>
+                <td>100</td>
+                </tr>
+                <tr>
+                <td><label for="sub2">Programming Skills</label></td>
+               <td><input type="text" id="ps" name="ps" min="0" max="100" title="marks should be positive and between 0 to 100"></td>
+                <td>100</td>    
+                </tr>
+                <tr>
+                <td><label for="sub3">RDBMS</label></td>
+                <td><input type="text" id="rdbms" name="rdbms" min="0" max="100" title="marks should be positive and between 0 to 100"></td>
+                <td>100</td>
+                </tr>
+                <tr>
+                <td><label for="sub4">AEC</label></td>
+                <td><input type="text" id="aec" name="aec" min="0" max="100" title="marks should be positive and between 0 to 100"></td>
+                <td>100</td>
+                </tr>
+                <tr>
+                <td><label for="sub4">SEC</label></td>
+                <td><input type="text" id="sec" name="sec" min="0" max="100" title="marks should be positive and between 0 to 100"></td>
+                <td>100</td>
+                </tr>
+            </table>
+            <br>
+            <center><input type="submit" value="Submit"></center>
+            </form>
+        </section>
+        <script>
+            const yearSelect = document.getElementById("year");
+            const semesterSelect = document.getElementById("semester");
+        
+            const semesterOptions = {
+                "1st": ["1st", "2nd"],
+                "2nd": ["3rd", "4th"],
+                "3rd": ["5th", "6th"],
+                "4th": ["7th", "8th"]
+            };
+        
+            yearSelect.addEventListener("change", function () {
+                const selectedYear = this.value;
+                const semesters = semesterOptions[selectedYear] || [];
+        
+                // Clear previous options
+                semesterSelect.innerHTML = '<option value="o">Select Your Semester</option>';
+        
+                // Add new relevant options
+                semesters.forEach(sem => {
+                    const option = document.createElement("option");
+                    option.value = sem.toLowerCase();
+                    option.textContent = sem;
+                    semesterSelect.appendChild(option);
+                });
+            });
+        </script>
+        
+</body>
+</html>
